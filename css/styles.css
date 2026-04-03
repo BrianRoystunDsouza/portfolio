@@ -4403,6 +4403,33 @@ input[type="button"].btn--primary:focus {
     background-color: var(--color-gray-18);
     padding-top: calc(6 * var(--space));
     padding-bottom: var(--vspace-3_5);
+    overflow: hidden;
+    position: relative;
+}
+
+.s-contact::before,
+.s-contact::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(10px);
+}
+
+.s-contact::before {
+    background: radial-gradient(circle, rgba(240, 180, 41, 0.24) 0%, rgba(240, 180, 41, 0) 70%);
+    height: 42rem;
+    right: -10rem;
+    top: 6rem;
+    width: 42rem;
+}
+
+.s-contact::after {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 72%);
+    height: 32rem;
+    left: -8rem;
+    bottom: 2rem;
+    width: 32rem;
 }
 
 .s-contact .section-header-allcaps {
@@ -4410,16 +4437,85 @@ input[type="button"].btn--primary:focus {
     margin-bottom: var(--vspace-2_5);
 }
 
+.s-contact__content {
+    align-items: stretch;
+    position: relative;
+    z-index: 2;
+}
+
 .s-contact .huge-text {
     color: white;
     margin-top: 0;
+    font-family: "Castoro", serif;
+    font-size: 5.2rem;
     font-weight: 400;
-    font-size: 4.6rem;
-    line-height: 1.304;
+    letter-spacing: -.03em;
+    line-height: 1.08;
+    margin-bottom: var(--vspace-0_75);
+    max-width: 9.5em;
 }
 
 .s-contact__content [class*="column"]:last-child {
     margin-left: auto;
+}
+
+.contact-intro {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015)),
+        linear-gradient(180deg, rgba(240, 180, 41, 0.08), rgba(240, 180, 41, 0));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3rem;
+    padding: calc(var(--vspace-1_5) + .4rem);
+    position: relative;
+    box-shadow:
+        0 2.4rem 6rem rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.contact-intro::before {
+    content: "";
+    position: absolute;
+    inset: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 2.2rem;
+    pointer-events: none;
+}
+
+.contact-intro__eyebrow {
+    color: var(--color-2);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: .28em;
+    margin: 0 0 var(--vspace-0_5);
+    text-transform: uppercase;
+}
+
+.contact-intro__text {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin: 0;
+    max-width: 54rem;
+}
+
+.contact-intro__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: var(--vspace-1);
+}
+
+.contact-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.84);
+    display: inline-flex;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    padding: 1rem 1.5rem;
+    text-transform: uppercase;
 }
 
 /* ------------------------------------------------------------------- 
@@ -4429,14 +4525,50 @@ input[type="button"].btn--primary:focus {
     margin-top: var(--vspace-0_75);
 }
 
+.contact-panel {
+    background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(12, 12, 12, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 3rem;
+    padding: calc(var(--vspace-1_25) + .2rem);
+    position: relative;
+    box-shadow:
+        0 2rem 5rem rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.contact-panel::before {
+    content: "";
+    position: absolute;
+    inset: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 2.2rem;
+    pointer-events: none;
+}
+
 .contact-block {
-    font-size: 2.8rem;
+    backdrop-filter: blur(14px);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.8rem;
+    font-size: 2.4rem;
     font-weight: 400;
-    line-height: 1.286;
+    line-height: 1.4;
+    min-height: 100%;
+    padding: 2.4rem 2.6rem;
+    transition: transform .3s ease, border-color .3s ease, background-color .3s ease;
+}
+
+.contact-block:hover {
+    border-color: rgba(240, 180, 41, 0.32);
+    transform: translateY(-3px);
 }
 
 .contact-block a {
     color: white;
+    word-break: break-word;
 }
 
 .contact-block a:hover, .contact-block a:focus {
@@ -4449,6 +4581,19 @@ input[type="button"].btn--primary:focus {
     color: rgba(255, 255, 255, 0.4);
     margin-top: 0;
     margin-bottom: .2rem;
+}
+
+.contact-block__content {
+    color: white;
+    margin: 0;
+}
+
+.contact-panel__note {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 1.4rem;
+    letter-spacing: .04em;
+    margin: 1.4rem 0 0;
+    text-align: center;
 }
 
 /* ------------------------------------------------------------------- 
@@ -4465,6 +4610,9 @@ input[type="button"].btn--primary:focus {
     .s-contact__content>.column:first-child {
         margin-bottom: var(--vspace-2);
     }
+    .s-contact .huge-text {
+        max-width: none;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -4477,6 +4625,14 @@ input[type="button"].btn--primary:focus {
     .s-contact .huge-text {
         font-size: 4.2rem;
     }
+    .contact-intro,
+    .contact-panel {
+        padding: var(--vspace-1);
+    }
+    .contact-intro::before,
+    .contact-panel::before {
+        inset: .9rem;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -4484,10 +4640,19 @@ input[type="button"].btn--primary:focus {
         font-size: 3.4rem;
     }
     .contact-block {
-        font-size: 2.6rem;
+        font-size: 2.1rem;
+        padding: 2rem;
     }
     .contact-block__header {
         font-size: 1.8rem;
+    }
+    .contact-intro__text {
+        font-size: 1.7rem;
+    }
+    .contact-pill {
+        font-size: 1.15rem;
+        letter-spacing: .08em;
+        padding: .9rem 1.2rem;
     }
 }
 
@@ -4496,7 +4661,7 @@ input[type="button"].btn--primary:focus {
         font-size: 3.2rem;
     }
     .contact-block {
-        font-size: 2.2rem;
+        font-size: 1.9rem;
     }
     .contact-block__header {
         font-size: 1.6rem;
@@ -4718,3 +4883,4 @@ input[type="button"].btn--primary:focus {
         margin-right: 1.4rem;
     }
 }
+
